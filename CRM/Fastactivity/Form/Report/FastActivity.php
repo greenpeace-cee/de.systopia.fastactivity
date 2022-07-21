@@ -81,6 +81,10 @@ class CRM_Fastactivity_Form_Report_FastActivity extends CRM_Report_Form {
                     'title'   => E::ts('Subject'),
                     'default' => FALSE,
                 ),
+                'activity_details'   => array(
+                  'title'   => E::ts('Details'),
+                  'default' => FALSE,
+                ),
                 'campaign'      => array(
                     'title'    => E::ts('Campaign'),
                     'required' => FALSE,
@@ -113,6 +117,9 @@ class CRM_Fastactivity_Form_Report_FastActivity extends CRM_Report_Form {
                 ),
                 'activity_subject'   => array(
                     'title' => E::ts('Activity Subject')
+                ),
+                'activity_details'   => array(
+                  'title' => E::ts('Activity Details')
                 ),
                 'activity_type_id'   => array(
                     'title'        => E::ts('Activity Type'),
