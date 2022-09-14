@@ -150,10 +150,11 @@ function fastactivity_civicrm_links($op, $objectName, $objectId, &$links, &$mask
   $replace_search_links = (bool) CRM_Fastactivity_Settings::getValue('fastactivity_replace_search');
   if ($replace_search_links && $op == 'activity.selector.row') {
     foreach ($links as &$link) {
-      if ($link['name'] == 'View') {
+      // GP-31270 Avoid fastactivity replacement when the link leads to non-activity page
+      if ($link['name'] == 'View' && strpos($link['url'], '/activity') !== false) {
         $link['url'] = 'civicrm/fastactivity/view';
       }
-      elseif ($link['name'] == 'Edit') {
+      elseif ($link['name'] == 'Edit' && strpos($link['url'], '/activity') !== false) {
         $link['url'] = 'civicrm/fastactivity/add';
       }
     }
