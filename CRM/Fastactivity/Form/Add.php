@@ -480,7 +480,7 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
 
     // Add element for engagement level
     $buildEngagementLevel = FALSE;
-    if (CRM_Campaign_BAO_Campaign::isCampaignEnable() &&
+    if (CRM_Campaign_BAO_Campaign::isComponentEnabled() &&
       CRM_Campaign_BAO_Campaign::accessCampaign()
     ) {
       $buildEngagementLevel = TRUE;
@@ -495,7 +495,7 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
     // check for survey activity
     $this->_isSurveyActivity = FALSE;
 
-    if ($this->_activityId && CRM_Campaign_BAO_Campaign::isCampaignEnable() &&
+    if ($this->_activityId && CRM_Campaign_BAO_Campaign::isComponentEnabled() &&
       CRM_Campaign_BAO_Campaign::accessCampaign()
     ) {
 
