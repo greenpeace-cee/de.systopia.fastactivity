@@ -131,7 +131,6 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
         'attributes' => array(
           'multiple' => TRUE,
           'create' => TRUE,
-          'api' => array('params' => array('is_deceased' => 0)),
         ),
       ),
       'followup_assignee_contact_id' => array(
@@ -140,7 +139,6 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
         'attributes' => array(
           'multiple' => TRUE,
           'create' => TRUE,
-          'api' => array('params' => array('is_deceased' => 0)),
         ),
       ),
       'followup_activity_type_id' => array(
