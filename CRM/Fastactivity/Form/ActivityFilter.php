@@ -67,11 +67,32 @@ class CRM_Fastactivity_Form_ActivityFilter extends CRM_Core_Form {
       }
     }
 
-    // assign fastactivity_activity_tab_filter_open value
-    $filter_should_be_open = (int) Civi::settings()->get('fastactivity_activity_tab_filter_open');
-    $this->assign('activity_tab_filter_open', $filter_should_be_open);
+    $this->assign('activity_tab_filter_open', $this->isActivityTabFilterOpen());
 
     return $defaults;
+  }
+
+  public function isActivityTabFilterOpen() {
+    $isOpenTabFilter = (bool) Civi::settings()->get('fastactivity_activity_tab_filter_open');
+    $userSearchFields = Civi::contactSettings(CRM_Core_Session::singleton()->getLoggedInContactID())->get('activity_tab_filter');
+    $submittedSearchFields = $this->exportValues();
+    $availableSearchFields = [
+      'activity_type_id',
+      'activity_type_exclude_id',
+      'activity_status_id',
+      'activity_campaign_id',
+      'activity_date_relative',
+      'activity_date_low',
+      'activity_date_high',
+    ];
+
+    foreach ($availableSearchFields as $searchField) {
+      if (!empty($submittedSearchFields[$searchField]) || !empty($userSearchFields[$searchField])) {
+        return true;
+      }
+    }
+
+   return $isOpenTabFilter;
   }
 
   /**
