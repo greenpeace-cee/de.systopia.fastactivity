@@ -58,10 +58,8 @@ class CRM_Fastactivity_Form_ActivityFilter extends CRM_Core_Form {
   public function setDefaultValues() {
     // CRM-11761 retrieve user's activity filter preferences
     $defaults = array();
-    $session = CRM_Core_Session::singleton();
-    $userID = $session->get('userID');
-    if ($userID && Civi::settings()->get('fastactivity_preserve_activity_tab_filter')) {
-      $defaults = Civi::contactSettings($userID)->get('activity_tab_filter');
+    if (Civi::settings()->get('fastactivity_preserve_activity_tab_filter')) {
+      $defaults = Civi::contactSettings(CRM_Core_Session::singleton()->getLoggedInContactID())->get('activity_tab_filter');
       if (!empty($defaults)) {
         $this->assign('activity_tab_filter', array_filter($defaults));
       }
@@ -72,7 +70,7 @@ class CRM_Fastactivity_Form_ActivityFilter extends CRM_Core_Form {
     return $defaults;
   }
 
-  public function isActivityTabFilterOpen() {
+  public function isActivityTabFilterOpen(): bool {
     $isOpenTabFilter = (bool) Civi::settings()->get('fastactivity_activity_tab_filter_open');
     $userSearchFields = Civi::contactSettings(CRM_Core_Session::singleton()->getLoggedInContactID())->get('activity_tab_filter');
     $submittedSearchFields = $this->exportValues();
