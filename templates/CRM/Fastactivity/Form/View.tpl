@@ -131,6 +131,20 @@
       </td>
       <td class="view-value">{$activity.duration}&nbsp;</td>
     </tr>
+    <tr class="crm-activity-form-block-activity_created_date">
+      <td class="label">
+        <i class="crm-i fa-calendar" aria-hidden="true" />
+        <span>{ts}Created Date{/ts}</span>
+      </td>
+      <td class="view-value">{$activity.createdDate|crmDate}&nbsp;</td>
+    </tr>
+    <tr class="crm-activity-form-block-activity_modified_date">
+      <td class="label">
+        <i class="crm-i fa-calendar" aria-hidden="true" />
+        <span>{ts}Last Modified Date{/ts}</span>
+      </td>
+      <td class="view-value">{$activity.modifiedDate|crmDate}&nbsp;</td>
+    </tr>
     <tr class="crm-activity-form-block-activity_priority">
       <td class="label">{ts}Priority{/ts}</td>
       <td class="view-value">{$activity.priority}&nbsp;</td>
