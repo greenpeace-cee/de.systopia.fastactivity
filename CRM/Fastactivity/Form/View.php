@@ -81,7 +81,7 @@ class CRM_Fastactivity_Form_View extends CRM_Fastactivity_Form_Base {
     // Get activity record
     $activityRecord = civicrm_api3('Activity', 'getsingle', array(
       'id' => $this->_activityId,
-      'return' => ["case_id", "status_id", "activity_date_time", "activity_type_id", "subject", "details", "priority_id", "duration", "medium_id", "campaign_id", "engagement_level"],
+      'return' => ["case_id", "status_id", "activity_date_time", "created_date", "modified_date", "activity_type_id", "subject", "details", "priority_id", "duration", "medium_id", "campaign_id", "engagement_level"],
     ));
 
     // Get Activity Status
@@ -91,6 +91,10 @@ class CRM_Fastactivity_Form_View extends CRM_Fastactivity_Form_Base {
     $activityDetails['status'] = $activityStatus[$this->_activityStatusId];
     // Get Activity Date/Time
     $activityDetails['dateTime'] = $activityRecord['activity_date_time'];
+    // Get Activity Created Date
+    $activityDetails['createdDate'] = $activityRecord['created_date'];
+    // Get Activity Modified Date
+    $activityDetails['modifiedDate'] = $activityRecord['modified_date'];
     // Get Activity Type Name
     $this->_activityTypeId = $activityRecord['activity_type_id'];
     if ($this->_activityTypeId) {
