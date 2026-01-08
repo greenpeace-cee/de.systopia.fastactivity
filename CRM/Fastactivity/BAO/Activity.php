@@ -118,6 +118,7 @@ class CRM_Fastactivity_BAO_Activity extends CRM_Activity_DAO_Activity {
   public static function outerSelectClause($params) {
     $select[] = 'inner_result.activity_id AS activity_id';
     $groupBy[] = 'inner_result.activity_id';
+    $groupBy[] = 'recurring_entity.parent_id';
     $select[] = 'inner_result.activity_type_id AS activity_type_id';
     $select[] = 'inner_result.activity_subject AS activity_subject';
     $select[] = 'inner_result.activity_date_time AS activity_date_time';
