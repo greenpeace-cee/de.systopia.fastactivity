@@ -398,10 +398,10 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
     }
 
     // Add activity Date Time
-      $this->add('datepicker','activity_date_time', ts('Date'), array('formatType' => 'activityDateTime'), TRUE);
+    $this->add('datepicker','activity_date_time', ts('Date'), array('formatType' => 'activityDateTime'), TRUE);
 
-      //add followup date
-      $this->add('datepicker', 'followup_date', ts('in'), array('formatType' => 'activityDateTime'));
+    //add followup date
+    $this->add('datepicker', 'followup_date', ts('in'), array('formatType' => 'activityDateTime'));
 
     // Only admins can change the activity source contact
     if (!CRM_Core_Permission::check('administer CiviCRM')) {
