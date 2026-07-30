@@ -398,10 +398,10 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
     }
 
     // Add activity Date Time
-    $this->addDateTime('activity_date_time', ts('Date'), TRUE, array('formatType' => 'activityDateTime'));
+    $this->add('datepicker','activity_date_time', ts('Date'), array('formatType' => 'activityDateTime'), TRUE);
 
     //add followup date
-    $this->addDateTime('followup_date', ts('in'), FALSE, array('formatType' => 'activityDateTime'));
+    $this->add('datepicker', 'followup_date', ts('in'), array('formatType' => 'activityDateTime'));
 
     // Only admins can change the activity source contact
     if (!CRM_Core_Permission::check('administer CiviCRM')) {
@@ -875,14 +875,11 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
     // if we're editing...
     if (isset($this->_activityId)) {
       if (empty($defaults['activity_date_time'])) {
-        list($defaults['activity_date_time'], $defaults['activity_date_time_time']) = CRM_Utils_Date::setDateDefaults(NULL, 'activityDateTime');
+        $defaults['activity_date_time'] = date('Y-m-d H:i:s');
       }
       elseif ($this->_action & CRM_Core_Action::UPDATE) {
         $this->assign('current_activity_date_time', $defaults['activity_date_time']);
-        list($defaults['activity_date_time'],
-          $defaults['activity_date_time_time']
-          ) = CRM_Utils_Date::setDateDefaults($defaults['activity_date_time'], 'activityDateTime');
-        list($defaults['repetition_start_date'], $defaults['repetition_start_date_time']) = CRM_Utils_Date::setDateDefaults($defaults['activity_date_time'], 'activityDateTime');
+        $defaults['repetition_start_date'] = $defaults['activity_date_time'];
       }
 
       $defaults['target_contact_count'] = $this->_activityTargetCount;
@@ -898,8 +895,7 @@ class CRM_Fastactivity_Form_Add extends CRM_Fastactivity_Form_Base {
       $defaults['source_contact_id'] = $this->_sourceContactId;
       $defaults['target_contact_id'] = $this->_targetContactId;
 
-      list($defaults['activity_date_time'], $defaults['activity_date_time_time'])
-        = CRM_Utils_Date::setDateDefaults(NULL, 'activityDateTime');
+      $defaults['activity_date_time'] = date('Y-m-d H:i:s');
     }
 
     if ($this->_activityTypeId) {
